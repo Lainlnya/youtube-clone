@@ -8,6 +8,7 @@ export default function Header() {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    navigate(`/videos/${text}`);
   };
 
   const handleChange = (e) => {
@@ -16,10 +17,6 @@ export default function Header() {
 
   return (
     <nav className={styles.nav}>
-      {console.log(
-        (new Date('2016-05-07') - new Date('2016-05-06')) /
-          (1000 * 60 * 60 * 24)
-      )}
       <img
         className={styles.logo}
         src="./youtube.png"
