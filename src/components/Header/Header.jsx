@@ -28,7 +28,7 @@ export default function Header() {
           className={styles.input}
           type="text"
           value={text}
-          placeholder="검색"
+          placeholder="search"
           onChange={handleChange}
         />
         <button className={styles.button}>

@@ -10,7 +10,7 @@ export default function Search() {
     videoError,
     data: videoData,
   } = useQuery(['video'], async () => {
-    return fetch(`data/videos/list_by_keyword.json`).then((res) => res.json());
+    return fetch('videos/list_by_keyword.json').then((res) => res.json());
   });
 
   return (

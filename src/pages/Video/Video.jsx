@@ -1,25 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Video.module.css';
 
 export default function Video({ isLoading, error, playlists }) {
-  console.log('data');
-  console.log(playlists);
   if (isLoading) return <p>Loading...</p>;
 
   if (error) return <p>error</p>;
 
   return (
     <ul className={styles.list}>
-      {playlists.items.map((playlist) => (
-        <li key={playlist.id} className={styles.list_item}>
-          <figure>
-            <img src={playlist.snippet.thumbnails.medium.url} alt="thumbnail" />
-            <figcaption>
-              <p>{playlist.snippet.title}</p>
-              <p>{changeDate(playlist.snippet.publishedAt)}</p>
-            </figcaption>
-          </figure>
-        </li>
+      {playlists.map((playlist) => (
+        <Link to={`/videos/detail/ ${playlist.id}`}>
+          <li key={playlist.id} className={styles.list_item}>
+            <figure>
+              <img
+                src={playlist.snippet.thumbnails.medium.url}
+                alt="thumbnail"
+              />
+              <figcaption>
+                <p>{playlist.snippet.title}</p>
+                <p>{changeDate(playlist.snippet.publishedAt)}</p>
+              </figcaption>
+            </figure>
+          </li>
+        </Link>
       ))}
     </ul>
   );

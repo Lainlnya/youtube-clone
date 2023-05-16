@@ -4,3 +4,9 @@
   padding: 0;
   list-style-type: none;
 }
+
+a {
+  color: #030303;
+  cursor: pointer;
+  text-decoration: none;
+}
