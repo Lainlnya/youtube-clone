@@ -9,3 +9,7 @@
   padding: 0;
   list-style-type: none;
 }
+
+.list_item:hover {
+  cursor: pointer;
+}

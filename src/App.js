@@ -4,7 +4,7 @@ import Root from './components/Root/Root';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Home from './pages/Home/Home';
-import Search from './pages/Search/Search';
+import VideoDetail from './pages/VideoDetail/VideoDetail';
 
 const queryClient = new QueryClient();
 
@@ -14,7 +14,9 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { index: true, element: <Home /> },
-      { path: '/videos/:videoId', element: <Search /> },
+      { path: 'videos', element: <Home /> },
+      { path: 'videos/:keyword', element: <Home /> },
+      { path: 'videos/detail/:detailId', element: <VideoDetail /> },
     ],
   },
 ]);
