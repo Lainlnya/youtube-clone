@@ -10,7 +10,14 @@ export default function Video({ isLoading, error, playlists }) {
   return (
     <ul className={styles.list}>
       {playlists.map((playlist) => (
-        <Link to={`/videos/detail/ ${playlist.id}`}>
+        <Link
+          to={
+            playlist.id.length
+              ? `/videos/detail/${playlist.id}`
+              : `/videos/detail/${playlist.id.videoId}`
+          }
+          state={playlist.snippet}
+        >
           <li key={playlist.id} className={styles.list_item}>
             <figure>
               <img
