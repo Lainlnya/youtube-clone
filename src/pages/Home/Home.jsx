@@ -10,9 +10,14 @@ export default function Home() {
     error,
     data: playlists,
   } = useQuery(['video', keyword], async () => {
-    return fetch(
-      `/videos/${keyword ? 'list_by_keyword' : 'list_by_popular_videos'}.json`
-    )
+    // return fetch(
+    //   `https://youtube.googleapis.com/youtube/v3/${
+    //     keyword
+    //       ? `search?part=snippet&maxResults=25&q=${keyword}`
+    //       : `videos?part=snippet&chart=mostPopular&maxResults=25`
+    //   }&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
+    // )
+    return fetch(`videos/list_by_popular_videos.json`)
       .then((res) => res.json())
       .then((data) => data.items);
   });
