@@ -2,37 +2,49 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Video.module.css';
 
-export default function Video({ isLoading, error, playlists }) {
+export default function Video({ isLoading, error, playlists, isRelated }) {
   if (isLoading) return <p>Loading...</p>;
 
   if (error) return <p>error</p>;
 
   return (
-    <ul className={styles.list}>
-      {playlists.map((playlist) => (
-        <Link
-          to={
-            playlist.id.length
-              ? `/videos/detail/${playlist.id}`
-              : `/videos/detail/${playlist.id.videoId}`
-          }
-          state={playlist.snippet}
-        >
-          <li key={playlist.id} className={styles.list_item}>
-            <figure>
-              <img
-                src={playlist.snippet.thumbnails.medium.url}
-                alt="thumbnail"
-              />
-              <figcaption>
-                <p>{playlist.snippet.title}</p>
-                <p>{changeDate(playlist.snippet.publishedAt)}</p>
-              </figcaption>
-            </figure>
-          </li>
-        </Link>
-      ))}
-    </ul>
+    <>
+      {playlists && (
+        <ul className={styles.list}>
+          {playlists.map((playlist) => (
+            <Link
+              to={
+                playlist.id.length
+                  ? `/videos/detail/${playlist.id}`
+                  : `/videos/detail/${playlist.id.videoId}`
+              }
+              state={playlist.snippet}
+            >
+              <li key={playlist.id} className={styles.list_item}>
+                <figure className={`${isRelated ? styles.figure : ''}`}>
+                  <img
+                    className={`${isRelated ? styles.related : ''}`}
+                    src={playlist.snippet.thumbnails.medium.url}
+                    alt="thumbnail"
+                  />
+                  <figcaption
+                    className={`${isRelated ? styles.relatedFig : ''}`}
+                  >
+                    <p className={styles.title}>{playlist.snippet.title}</p>
+                    <p className={styles.channel}>
+                      {playlist.snippet.channelTitle}
+                    </p>
+                    <p className={styles.day}>
+                      {changeDate(playlist.snippet.publishedAt)}
+                    </p>
+                  </figcaption>
+                </figure>
+              </li>
+            </Link>
+          ))}
+        </ul>
+      )}
+    </>
   );
 }
 

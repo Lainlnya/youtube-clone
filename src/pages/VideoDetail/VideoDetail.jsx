@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import styles from './VideoDetail.module.css';
+import RelatedVideo from '../../components/RelatedVideo/RelatedVideo';
 
 export default function VideoDetail() {
   const { detailId } = useParams();
@@ -13,8 +14,8 @@ export default function VideoDetail() {
     data: detail,
   } = useQuery(['detail', detailId], async () => {
     return fetch(
-      '/videos/video_detail.json'
-      // `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${detailId}&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
+      // '/videos/video_detail.json'
+      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${detailId}&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
     )
       .then((res) => res.json())
       .then((data) => data.items[0]);
@@ -22,6 +23,7 @@ export default function VideoDetail() {
 
   return (
     <>
+      {console.log(detail)}
       {detail && (
         <main className={styles.main}>
           <section className={styles.playerSec}>
@@ -49,14 +51,7 @@ export default function VideoDetail() {
             </section>
           </section>
           <section className={styles.related}>
-            <p>
-              relatedVideodddddddddd relatedVideodddddddddd
-              relatedVideodddddddddd relatedVideodddddddddd
-              relatedVideodddddddddd relatedVideodddddddddd
-              relatedVideodddddddddd relatedVideodddddddddd
-              relatedVideodddddddddd relatedVideodddddddddd
-              relatedVideodddddddddd
-            </p>
+            <RelatedVideo related={detailId} />
           </section>
         </main>
       )}

@@ -10,17 +10,24 @@ export default function Home() {
     error,
     data: playlists,
   } = useQuery(['video', keyword], async () => {
-    // return fetch(
-    //   `https://youtube.googleapis.com/youtube/v3/${
-    //     keyword
-    //       ? `search?part=snippet&maxResults=25&q=${keyword}`
-    //       : `videos?part=snippet&chart=mostPopular&maxResults=25`
-    //   }&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
-    // )
-    return fetch(`videos/list_by_popular_videos.json`)
+    return fetch(
+      `https://youtube.googleapis.com/youtube/v3/${
+        keyword
+          ? `search?part=snippet&maxResults=25&q=${keyword}`
+          : `videos?part=snippet&chart=mostPopular&maxResults=25`
+      }&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
+    )
       .then((res) => res.json())
       .then((data) => data.items);
   });
+  // return fetch(`videos/list_by_popular_videos.json`)
 
-  return <Video isLoading={isLoading} error={error} playlists={playlists} />;
+  return (
+    <Video
+      isLoading={isLoading}
+      error={error}
+      playlists={playlists}
+      isRelated={false}
+    />
+  );
 }
