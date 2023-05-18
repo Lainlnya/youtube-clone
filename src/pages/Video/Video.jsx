@@ -49,7 +49,7 @@ export default function Video({ isLoading, error, playlists, isRelated }) {
 }
 
 const changeDate = (date) => {
-  const [day, time] = [date.split('T')];
+  const [day] = [date.split('T')];
   const video_time = new Date(day);
   const current = new Date();
 

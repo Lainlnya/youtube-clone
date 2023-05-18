@@ -4,11 +4,7 @@ import styles from './Comments.module.css';
 
 export default function Comments({ commentsId }) {
   const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
-  const {
-    isLoading,
-    error,
-    data: comments,
-  } = useQuery(['comments', commentsId], async () => {
+  const { data: comments } = useQuery(['comments', commentsId], async () => {
     return fetch(
       `https://www.googleapis.com/youtube/v3/commentThreads?key=${youtubeAPI}&textFormat=plainText&part=snippet&videoId=${commentsId}&maxResults=50`
     )
@@ -30,7 +26,7 @@ export default function Comments({ commentsId }) {
                     comment.snippet.topLevelComment.snippet
                       .authorProfileImageUrl
                   }
-                  alt="channel image"
+                  alt="channel thumbnail"
                 />
                 <figcaption className={styles.channelCaption}>
                   <p className={styles.title}>
