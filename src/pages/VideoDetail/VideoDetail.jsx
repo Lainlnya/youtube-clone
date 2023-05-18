@@ -8,14 +8,9 @@ import RelatedVideo from '../../components/RelatedVideo/RelatedVideo';
 export default function VideoDetail() {
   const { detailId } = useParams();
   const videoInfo = useLocation().state;
-  const {
-    detailLoading,
-    detailError,
-    data: detail,
-  } = useQuery(['detail', detailId], async () => {
+  const { data: detail } = useQuery(['detail', detailId], async () => {
     return fetch(
-      // '/videos/video_detail.json'
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${detailId}&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
+      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${videoInfo.channelId}&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
     )
       .then((res) => res.json())
       .then((data) => data.items[0]);
@@ -23,7 +18,6 @@ export default function VideoDetail() {
 
   return (
     <>
-      {console.log(detail)}
       {detail && (
         <main className={styles.main}>
           <section className={styles.playerSec}>
@@ -42,9 +36,10 @@ export default function VideoDetail() {
                 <img
                   className={styles.thumbnail}
                   src={detail.snippet.thumbnails.default.url}
+                  alt="channel thumbnail"
                 />
                 <figcaption>
-                  <p className={styles.thumbTitle}>{detail.snippet.title}</p>
+                  <p className={styles.thumbTitle}>{videoInfo.channelTitle}</p>
                 </figcaption>
               </figure>
               <div className={styles.description}>{videoInfo.description}</div>
