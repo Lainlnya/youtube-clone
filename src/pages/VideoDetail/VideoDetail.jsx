@@ -8,10 +8,9 @@ import RelatedVideo from '../../components/RelatedVideo/RelatedVideo';
 export default function VideoDetail() {
   const { detailId } = useParams();
   const videoInfo = useLocation().state;
-  const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
   const { data: detail } = useQuery(['detail', detailId], async () => {
     return fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${videoInfo.channelId}&key=${youtubeAPI}`
+      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${videoInfo.channelId}&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
     )
       .then((res) => res.json())
       .then((data) => data.items[0]);

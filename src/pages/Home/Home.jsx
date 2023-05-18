@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 export default function Home() {
   const { keyword } = useParams();
-  const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
   const {
     isLoading,
     error,
@@ -16,7 +15,7 @@ export default function Home() {
         keyword
           ? `search?part=snippet&maxResults=25&q=${keyword}`
           : `videos?part=snippet&chart=mostPopular&maxResults=25`
-      }&key=${youtubeAPI}`
+      }&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
     )
       .then((res) => res.json())
       .then((data) => data.items);
