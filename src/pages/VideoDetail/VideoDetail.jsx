@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { useLocation } from 'react-router-dom';
 import styles from './VideoDetail.module.css';
 import RelatedVideo from '../../components/RelatedVideo/RelatedVideo';
-import Comments from '../../components/Comments/Comments';
 
 export default function VideoDetail() {
   const { detailId } = useParams();
@@ -45,9 +44,6 @@ export default function VideoDetail() {
                 </figcaption>
               </figure>
               <div className={styles.description}>{videoInfo.description}</div>
-            </section>
-            <section>
-              <Comments commentsId={detailId} />
             </section>
           </section>
           <section className={styles.related}>
