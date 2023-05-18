@@ -3,14 +3,13 @@ import { useQuery } from '@tanstack/react-query';
 import styles from './Comments.module.css';
 
 export default function Comments({ commentsId }) {
+  const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
   const {
     isLoading,
     error,
     data: comments,
   } = useQuery(['comments', commentsId], async () => {
-    return fetch(
-      `https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU&textFormat=plainText&part=snippet&videoId=${commentsId}&maxResults=50`
-    )
+    return fetch()`https://www.googleapis.com/youtube/v3/commentThreads?key=${youtubeAPI}&textFormat=plainText&part=snippet&videoId=${commentsId}&maxResults=50`
       .then((res) => res.json())
       .then((data) => data.items);
   });
