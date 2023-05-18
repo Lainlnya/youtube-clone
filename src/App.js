@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Home from './pages/Home/Home';
 import VideoDetail from './pages/VideoDetail/VideoDetail';
+import { DarkModeProvider } from './Context/DarkModeContext';
 
 const queryClient = new QueryClient();
 
@@ -23,10 +24,12 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />;
-      <ReactQueryDevtools initialIsOpen={true} />
-    </QueryClientProvider>
+    <DarkModeProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />;
+        <ReactQueryDevtools initialIsOpen={true} />
+      </QueryClientProvider>
+    </DarkModeProvider>
   );
 }
 

@@ -28,7 +28,7 @@ export default function VideoDetail() {
                 id="ytplayer"
                 type="text/html"
                 title="ytplayer"
-                src={`https://www.youtube.com/embed/${detailId}?autoplay=1&origin=http://example.com`}
+                src={`https://www.youtube.com/embed/${detailId}?autoplay=1&mute=1&origin=http://example.com`}
               />
             </div>
             <section className={styles.infoSec}>

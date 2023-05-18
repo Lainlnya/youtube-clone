@@ -9,7 +9,9 @@ export default function Comments({ commentsId }) {
     error,
     data: comments,
   } = useQuery(['comments', commentsId], async () => {
-    return fetch()`https://www.googleapis.com/youtube/v3/commentThreads?key=${youtubeAPI}&textFormat=plainText&part=snippet&videoId=${commentsId}&maxResults=50`
+    return fetch(
+      `https://www.googleapis.com/youtube/v3/commentThreads?key=${youtubeAPI}&textFormat=plainText&part=snippet&videoId=${commentsId}&maxResults=50`
+    )
       .then((res) => res.json())
       .then((data) => data.items);
   });
