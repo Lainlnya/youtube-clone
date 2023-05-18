@@ -1,0 +1,35 @@
+.comments {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.channel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.channelThumbnail {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.channelCaption {
+  display: flex;
+  flex-direction: column;
+}
+
+.title,
+.comment {
+  font-size: 1rem;
+}
+
+.title {
+  font-weight: 600;
+}
