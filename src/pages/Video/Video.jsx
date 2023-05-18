@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Video.module.css';
+import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
 
 export default function Video({ isLoading, error, playlists, isRelated }) {
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loading />;
 
-  if (error) return <p>error</p>;
+  if (error) return <Error />;
 
   return (
     <>

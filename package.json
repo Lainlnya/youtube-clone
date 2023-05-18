@@ -21,6 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://chatwithyrmei-my-bucket-list.netlify.app/",
   "eslintConfig": {
     "extends": [
       "react-app",
