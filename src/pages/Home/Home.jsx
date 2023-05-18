@@ -16,7 +16,7 @@ export default function Home() {
       `https://youtube.googleapis.com/youtube/v3/${
         keyword
           ? `search?part=snippet&maxResults=25&q=${keyword}`
-          : `videos?part=snippet&chart=mostPopular&maxResults=25`
+          : `videos?part=snippet&chart=mostPopular&maxResults=25&regionCode=kr`
       }&key=${youtubeAPI}`
     )
       .then((res) => res.json())

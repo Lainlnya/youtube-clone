@@ -11,13 +11,14 @@ import Error from '../Error/Error';
 export default function VideoDetail() {
   const { detailId } = useParams();
   const videoInfo = useLocation().state;
+  const youtubeAPI = process.env.REACT_YOUTUBE_API;
   const {
     isLoading,
     error,
     data: detail,
   } = useQuery(['detail', detailId], async () => {
     return fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${videoInfo.channelId}&key=AIzaSyAzVKlcBxax8v4o-ugCMDz3al41hu_4hXU`
+      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${videoInfo.channelId}&key=${youtubeAPI}`
     )
       .then((res) => res.json())
       .then((data) => data.items[0]);
