@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Video from '../Video/Video';
 import { useParams } from 'react-router-dom';
+import styles from '../Home/Home.module.css';
 
 export default function Home() {
   const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
@@ -23,11 +24,13 @@ export default function Home() {
   });
 
   return (
-    <Video
-      isLoading={isLoading}
-      error={error}
-      playlists={playlists}
-      isRelated={false}
-    />
+    <main className={styles.main}>
+      <Video
+        isLoading={isLoading}
+        error={error}
+        playlists={playlists}
+        isRelated={false}
+      />
+    </main>
   );
 }

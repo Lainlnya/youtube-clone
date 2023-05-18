@@ -1,4 +1,6 @@
 .list {
+  background-color: var(--color-bg);
+  color: var(--color-text);
   padding: 24px 24px 0 24px;
   display: flex;
   flex-wrap: wrap;
@@ -46,10 +48,7 @@ figcaption {
   font-size: 0.7rem;
   width: 90%;
 }
-/* 
-.relatedFig {
-  flex-grow: 2;
-} */
+
 .title {
   font-size: 0.8rem;
   font-weight: 600;

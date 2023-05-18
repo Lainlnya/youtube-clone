@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IoIosSearch } from 'react-icons/io';
+import { BsSun } from 'react-icons/bs';
+import { CiDark } from 'react-icons/ci';
+import { useDarkMode } from '../../Context/DarkModeContext';
 import styles from './Header.module.css';
 
 export default function Header() {
   const [text, setText] = useState('');
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,7 +23,7 @@ export default function Header() {
     <nav className={styles.nav}>
       <img
         className={styles.logo}
-        src="./youtube.png"
+        src={`${darkMode ? './youtube_dark.png' : './youtube.png'}`}
         alt="youtube logo"
         onClick={() => navigate('/')}
       />
@@ -35,7 +39,13 @@ export default function Header() {
           <IoIosSearch className={styles.search} />
         </button>
       </form>
-      <div></div>
+      <button className={styles.toggle} onClick={() => toggleDarkMode()}>
+        {darkMode ? (
+          <BsSun className={styles.tog} />
+        ) : (
+          <CiDark className={styles.tog} />
+        )}
+      </button>
     </nav>
   );
 }

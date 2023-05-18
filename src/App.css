@@ -3,10 +3,11 @@
   margin: 0 auto;
   padding: 0;
   list-style-type: none;
+  background-color: var(--color-bg);
 }
 
 a {
-  color: #030303;
+  color: var(--color-text);
   cursor: pointer;
   text-decoration: none;
 }

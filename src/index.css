@@ -1,3 +1,16 @@
+:root {
+  --color-bg: #fdfdfd;
+  --color-text: #010101;
+  --color-des: #f2f2f2;
+  --color-input: #d3d3d3;
+  --color-des-text: #010101;
+}
+
+html.dark {
+  --color-bg: #010101;
+  --color-text: #fdfdfd;
+}
+
 * {
   margin: 0;
   padding: 0;

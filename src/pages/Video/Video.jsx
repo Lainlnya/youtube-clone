@@ -58,14 +58,14 @@ const changeDate = (date) => {
       if (current.getMonth() === video_time.getMonth()) {
         if (current.getDay() === video_time.getDay()) {
         } else
-          return `${(video_time.getDay() - current.getDay()).toString()}일 전`;
+          return `${current.getDay() - video_time.getDay().toString()}일 전`;
       } else
         return `${(
-          video_time.getMonth() - current.getMonth()
+          current.getMonth() - video_time.getMonth()
         ).toString()}달 전`;
     } else
       return `${(
-        video_time.getFullYear() - current.getFullYear()
+        current.getFullYear() - video_time.getFullYear()
       ).toString()}년 전`;
   }
 };

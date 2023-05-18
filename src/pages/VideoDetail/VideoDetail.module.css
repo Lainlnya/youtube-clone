@@ -1,10 +1,12 @@
 .main {
-  margin-top: 1%;
+  background-color: var(--color-bg);
   display: flex;
   flex-flow: row wrap;
+  color: var(--color-text);
 }
 
 .playerSec {
+  margin-top: 1%;
   padding-left: 2%;
   padding-right: 2%;
   flex-basis: 66%;
@@ -55,7 +57,8 @@
 
 .description {
   margin-top: 1rem;
-  background-color: #f2f2f2;
+  background-color: var(--color-des);
+  color: var(--color-des-text);
   width: 100%;
   padding: 10px;
   border-radius: 1rem;
