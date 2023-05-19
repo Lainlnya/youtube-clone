@@ -1,9 +1,40 @@
 # youtube-clone
 
-youtube clone coding using react
+리액트로 만든 유튜브 클론코딩 프로젝트입니다.
 
-1. Logo와 Banner
-2. Hot & Trendy Cards => vidio card(Thumbnail, Title, 날짜)
-3. 검색을 누르면 videos/bts
-4. 영상목록을 클릭하면 상세페이지
-5. Title, channel, channel image, 영상 정보, 오른쪽엔 연관 정보 video
+## 기능
+
+- [x] hot trends video 보여주기
+- [x] search를 통해 키워드 입력과 키워드에 따른 video 보여주기
+- [x] Logo를 클릭했을 때 youtube 메인 화면으로 돌아가기
+- [x] video를 클릭하면 상세페이지로 이동하며 관련된 video 영상들과, video 정보 보여주기
+- [x] video와 관련된 comments 50개 보여주기
+- [x] 전체 페이지 반응형으로 구현하기
+
+## history
+
+23.05.07 검색바와 메인페이지 UI 구현 \
+23.05.15 검색바 기능 구현 \
+23.05.17 video 상세페이지 UI 및 기능 구현, router 상세하게 수정 \
+23.05.18 관련된 비디오 UI 및 기능 구현, comment UI 추가, API키 숨기기, 다크모드 구현, Error 페이지 및 Loading 페이지 UI 구현, 핫트랜드 영상 지역 추가하기 \
+23.05.19 전체적인 리팩토링
+
+### 리팩토링 내용
+
+1. query fetch => axios
+2. youtube context api 및 클래스 구현
+3. format age 라이브러리 사용 및 에러 해결
+
+## 배운점 및 느낀점
+
+- 어떤 단위로 components를 나눠야할지에 많은 고민을 하게 됐던 프로젝트
+- 실제 사용가능한 api들을 이용해서 처음으로 만들어 본 프로젝트
+- 반응형 홈페이지를 구현하면서 flex를 조금 더 광범위하게 사용해볼 수 있게 되었음
+- 여러 부분에서 API를 호출하며 반복성에 대해 고민하였는데, context API를 사용하고, class로 관리하는 방법에 대해 익힐 수 있었음
+- 기능에 따라 git 브런치를 따로 만들어서 하려고 노력함
+
+## 어려웠던 점
+
+- 처음 use query를 이용해서 api를 호출할 때, 정확한 링크 호출이 되지 않아 json 관련 에러가 게속 나타나서 프로젝트 진행이 더뎠던 점
+- link에 props을 담아 넘기는 방법에 대해 고민하고 검색하다가 state의 존재를 알게 되고 해결할 수 있었음
+- 아직 다크모드와 context api를 만드는 것에 대해서 미숙해서 여러 번 다시 만들어봐야겠다고 생각함
