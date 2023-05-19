@@ -17,9 +17,13 @@ export default function VideoDetail() {
     isLoading,
     error,
     data: detail,
-  } = useQuery(['detail', detailId], () => {
-    return youtube.channelInfo(videoInfo.channelId);
-  });
+  } = useQuery(
+    ['detail', detailId],
+    () => {
+      return youtube.channelInfo(videoInfo.channelId);
+    },
+    { staleTime: 1000 * 60 * 5 }
+  );
 
   if (isLoading) return <Loading />;
   if (error) return <Error />;
@@ -36,6 +40,7 @@ export default function VideoDetail() {
                 type="text/html"
                 title="ytplayer"
                 src={`https://www.youtube.com/embed/${detailId}?autoplay=1&mute=1&origin=http://example.com`}
+                frameBorder="0"
               />
             </div>
             <section className={styles.infoSec}>

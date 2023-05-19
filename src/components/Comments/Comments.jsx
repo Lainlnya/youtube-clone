@@ -5,9 +5,13 @@ import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
 
 export default function Comments({ commentsId }) {
   const { youtube } = useYoutubeApi();
-  const { data: comments } = useQuery(['comments', commentsId], () => {
-    return youtube.comment(commentsId);
-  });
+  const { data: comments } = useQuery(
+    ['comments', commentsId],
+    () => {
+      return youtube.comment(commentsId);
+    },
+    { staleTime: 1000 * 60 * 1 }
+  );
 
   return (
     <>

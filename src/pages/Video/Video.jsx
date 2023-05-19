@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './Video.module.css';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
+import { formatAgo } from '../../util/date';
 
 export default function Video({ isLoading, error, playlists, isRelated }) {
   if (isLoading) return <Loading />;
@@ -37,7 +38,7 @@ export default function Video({ isLoading, error, playlists, isRelated }) {
                       {playlist.snippet.channelTitle}
                     </p>
                     <p className={styles.day}>
-                      {changeDate(playlist.snippet.publishedAt)}
+                      {formatAgo(playlist.snippet.publishedAt)}
                     </p>
                   </figcaption>
                 </figure>
@@ -49,25 +50,3 @@ export default function Video({ isLoading, error, playlists, isRelated }) {
     </>
   );
 }
-
-const changeDate = (date) => {
-  const [day] = [date.split('T')];
-  const video_time = new Date(day);
-  const current = new Date();
-
-  if (current.getDate() !== video_time) {
-    if (current.getFullYear() === video_time.getFullYear()) {
-      if (current.getMonth() === video_time.getMonth()) {
-        if (current.getDay() === video_time.getDay()) {
-        } else
-          return `${current.getDay() - video_time.getDay().toString()}일 전`;
-      } else
-        return `${(
-          current.getMonth() - video_time.getMonth()
-        ).toString()}달 전`;
-    } else
-      return `${(
-        current.getFullYear() - video_time.getFullYear()
-      ).toString()}년 전`;
-  }
-};

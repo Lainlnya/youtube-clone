@@ -12,9 +12,13 @@ export default function Home() {
     isLoading,
     error,
     data: playlists,
-  } = useQuery(['video', keyword], () => {
-    return youtube.hotSearch(keyword);
-  });
+  } = useQuery(
+    ['video', keyword],
+    () => {
+      return youtube.hotSearch(keyword);
+    },
+    { staleTime: 1000 * 60 * 1 }
+  );
 
   return (
     <main className={styles.main}>
