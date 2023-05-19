@@ -7,21 +7,18 @@ import RelatedVideo from '../../components/RelatedVideo/RelatedVideo';
 import Comments from '../../components/Comments/Comments';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
+import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
 
 export default function VideoDetail() {
   const { detailId } = useParams();
+  const { youtube } = useYoutubeApi();
   const videoInfo = useLocation().state;
-  const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
   const {
     isLoading,
     error,
     data: detail,
-  } = useQuery(['detail', detailId], async () => {
-    return fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${videoInfo.channelId}&key=${youtubeAPI}`
-    )
-      .then((res) => res.json())
-      .then((data) => data.items[0]);
+  } = useQuery(['detail', detailId], () => {
+    return youtube.channelInfo(videoInfo.channelId);
   });
 
   if (isLoading) return <Loading />;

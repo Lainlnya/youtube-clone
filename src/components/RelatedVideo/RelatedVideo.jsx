@@ -1,21 +1,18 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Video from '../../pages/Video/Video';
+import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
 
 export default function RelatedVideo({ related }) {
   const relatedId = related;
-  const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
+  const { youtube } = useYoutubeApi();
 
   const {
     isLoading,
     error,
     data: videos,
-  } = useQuery(['video', relatedId], async () => {
-    return fetch(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&relatedToVideoId=${relatedId}&type=video&key=${youtubeAPI}`
-    )
-      .then((res) => res.json())
-      .then((data) => data.items);
+  } = useQuery(['video', relatedId], () => {
+    return youtube.relatedVideo(relatedId);
   });
 
   return (

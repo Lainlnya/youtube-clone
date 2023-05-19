@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 import Error from './pages/Error/Error';
 import VideoDetail from './pages/VideoDetail/VideoDetail';
 import { DarkModeProvider } from './Context/DarkModeContext';
+import { YoutubeApiProvider } from './Context/YoutubeApiContext';
 
 const queryClient = new QueryClient();
 
@@ -26,12 +27,14 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <DarkModeProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={true} />
-      </QueryClientProvider>
-    </DarkModeProvider>
+    <YoutubeApiProvider>
+      <DarkModeProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={true} />
+        </QueryClientProvider>
+      </DarkModeProvider>
+    </YoutubeApiProvider>
   );
 }
 
