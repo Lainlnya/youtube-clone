@@ -4,6 +4,7 @@ import Root from './components/Root/Root';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Home from './pages/Home/Home';
+import Error from './pages/Error/Error';
 import VideoDetail from './pages/VideoDetail/VideoDetail';
 import { DarkModeProvider } from './Context/DarkModeContext';
 
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
+    errorElement: <Error />,
     children: [
       { index: true, element: <Home /> },
       { path: 'videos', element: <Home /> },
@@ -26,7 +28,7 @@ function App() {
   return (
     <DarkModeProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </DarkModeProvider>

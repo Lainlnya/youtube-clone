@@ -11,7 +11,7 @@ import Error from '../Error/Error';
 export default function VideoDetail() {
   const { detailId } = useParams();
   const videoInfo = useLocation().state;
-  const youtubeAPI = process.env.REACT_YOUTUBE_API;
+  const youtubeAPI = process.env.REACT_APP_YOUTUBE_API;
   const {
     isLoading,
     error,

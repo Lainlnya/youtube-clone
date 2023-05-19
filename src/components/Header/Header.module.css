@@ -1,4 +1,4 @@
-.nav {
+.header {
   background-color: var(--color-bg);
   display: flex;
   flex-direction: row;
@@ -7,14 +7,25 @@
   color: var(--color-text);
 }
 
-.logo {
-  margin-left: 2rem;
-  width: 7rem;
-  height: 4rem;
+.nav {
+  display: flex;
+  margin-top: 1.2rem;
 }
 
-.logo:hover {
+.logo {
+  margin-left: 2rem;
+  width: 5rem;
+  height: 3rem;
+  color: var(--color-logo);
+}
+
+.nav:hover {
   cursor: pointer;
+}
+
+.h1 {
+  line-height: 43px;
+  color: var(--color-text);
 }
 
 .form {
@@ -32,6 +43,7 @@
   font-size: 1rem;
   border: 2px solid var(--color-input);
   border-radius: 1.5rem 0 0 1.5rem;
+  outline: none;
 }
 
 .button {
