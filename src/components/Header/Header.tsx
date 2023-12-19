@@ -11,15 +11,15 @@ export default function Header() {
   const { keyword } = useParams();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/videos/${text}`);
   };
 
   useEffect(() => setText(keyword || ''), [keyword]);
 
-  const handleChange = (e) => {
-    setText(e.target.value);
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setText(e.currentTarget.value);
   };
 
   return (

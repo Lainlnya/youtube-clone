@@ -5,10 +5,35 @@ import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 import { formatAgo } from '../../util/date';
 
-export default function Video({ isLoading, error, playlists, isRelated }) {
-  if (isLoading) return <Loading />;
+type Video = {
+  isLoading: boolean;
+  isError: boolean;
+  playlists: Array<{
+    id: string | { videoId?: string };
+    snippet: {
+      thumbnails: {
+        medium: {
+          url: string;
+        };
+      };
+      title: string;
+      channelTitle: string;
+      publishedAt: string;
+    };
+  }>;
+  isRelated: boolean;
+};
 
-  if (error) return <Error />;
+type ErrorType<T> = {
+  error: T | unknown;
+};
+
+export default function Video(
+  { isLoading, isError, playlists, isRelated }: Video,
+  { error }: ErrorType<object>
+) {
+  if (isLoading) return <Loading />;
+  if (isError) return <Error />;
 
   return (
     <>
@@ -17,13 +42,16 @@ export default function Video({ isLoading, error, playlists, isRelated }) {
           {playlists.map((playlist) => (
             <Link
               to={
-                playlist.id.length
+                typeof playlist.id === 'string'
                   ? `/videos/detail/${playlist.id}`
-                  : `/videos/detail/${playlist.id.videoId}`
+                  : `/videos/detail/${playlist.id.videoId || ''}`
               }
               state={playlist.snippet}
             >
-              <li key={playlist.id} className={styles.list_item}>
+              <li
+                key={typeof playlist.id === 'string' ? playlist.id : ''}
+                className={styles.list_item}
+              >
                 <figure className={`${isRelated ? styles.figure : ''}`}>
                   <img
                     className={`${isRelated ? styles.related : ''}`}

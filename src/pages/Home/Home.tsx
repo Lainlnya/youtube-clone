@@ -10,7 +10,7 @@ export default function Home() {
   const { youtube } = useYoutubeApi();
   const {
     isLoading,
-    error,
+    isError,
     data: playlists,
   } = useQuery(
     ['video', keyword],
@@ -24,7 +24,7 @@ export default function Home() {
     <main className={styles.main}>
       <Video
         isLoading={isLoading}
-        error={error}
+        isError={isError}
         playlists={playlists}
         isRelated={false}
       />
