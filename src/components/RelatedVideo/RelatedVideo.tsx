@@ -3,18 +3,22 @@ import { useQuery } from '@tanstack/react-query';
 import Video from '../../pages/Video/Video';
 import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
 
-export default function RelatedVideo({ related }) {
-  const relatedId = related;
+type VideoProps = {
+  channelName: string;
+};
+
+export default function RelatedVideo({ channelName }: VideoProps) {
+  const channelTitle = channelName;
   const { youtube } = useYoutubeApi();
 
   const {
     isLoading,
-    error,
+    isError,
     data: videos,
   } = useQuery(
-    ['video', relatedId],
+    ['video', channelTitle],
     () => {
-      return youtube.relatedVideo(relatedId);
+      return youtube.hotSearch(channelTitle);
     },
     { staleTime: 1000 * 60 * 5 }
   );
@@ -22,7 +26,7 @@ export default function RelatedVideo({ related }) {
   return (
     <Video
       isLoading={isLoading}
-      error={error}
+      isError={isError}
       playlists={videos}
       isRelated={true}
     />

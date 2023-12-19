@@ -5,7 +5,7 @@ import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 import { formatAgo } from '../../util/date';
 
-type Video = {
+export type Video = {
   isLoading: boolean;
   isError: boolean;
   playlists: Array<{
@@ -24,7 +24,7 @@ type Video = {
   isRelated: boolean;
 };
 
-type ErrorType<T> = {
+export type ErrorType<T> = {
   error: T | unknown;
 };
 

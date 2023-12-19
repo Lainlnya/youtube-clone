@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { IoIosSearch } from 'react-icons/io';
 import { BsSun, BsYoutube } from 'react-icons/bs';
@@ -6,7 +6,7 @@ import { CiDark } from 'react-icons/ci';
 import { useDarkMode } from '../../Context/DarkModeContext';
 import styles from './Header.module.css';
 
-export default function Header() {
+export default function Header(): ReactElement {
   const [text, setText] = useState('');
   const { keyword } = useParams();
   const { darkMode, toggleDarkMode } = useDarkMode();
