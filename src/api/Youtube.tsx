@@ -1,15 +1,29 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
-type YoutubeVideo = {
+export type YoutubeVideo = {
+  id: string | { videoId?: string };
   snippet: {
+    thumbnails: {
+      medium: {
+        url: string;
+      };
+    };
     title: string;
-    description: string;
+    channelTitle: string;
+    publishedAt: string;
   };
 };
 
-type YoutubeComment = {
+export type YoutubeComment = {
+  id: string;
   snippet: {
-    textDisplay: string;
+    topLevelComment: {
+      snippet: {
+        authorProfileImageUrl: string;
+        authorDisplayName: string;
+        textDisplay: string;
+      };
+    };
   };
 };
 
@@ -17,6 +31,11 @@ type YoutubeChannel = {
   snippet: {
     title: string;
     description: string;
+    thumbnails: {
+      default: {
+        url: string;
+      };
+    };
   };
 };
 

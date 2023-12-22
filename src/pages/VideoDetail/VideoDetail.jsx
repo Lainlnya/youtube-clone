@@ -7,18 +7,12 @@ import RelatedVideo from '../../components/RelatedVideo/RelatedVideo';
 import Comments from '../../components/Comments/Comments';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
-import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
-
-export type VideoProps = {
-  commentsId: string;
-  channelName: string;
-};
+import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
 
 export default function VideoDetail() {
   const { detailId } = useParams();
   const { youtube } = useYoutubeApi();
   const videoInfo = useLocation().state;
-
   const {
     isLoading,
     error,
@@ -43,6 +37,7 @@ export default function VideoDetail() {
               <iframe
                 className={styles.player}
                 id="ytplayer"
+                type="text/html"
                 title="ytplayer"
                 src={`https://www.youtube.com/embed/${detailId}?autoplay=1&mute=1&origin=http://example.com`}
                 frameBorder="0"
@@ -63,11 +58,11 @@ export default function VideoDetail() {
               <div className={styles.description}>{videoInfo.description}</div>
             </section>
             <section>
-              <Comments commentsId={detailId!} />›
+              <Comments commentsId={detailId} />
             </section>
           </section>
           <section className={styles.related}>
-            <RelatedVideo channelName={videoInfo.title} />
+            <RelatedVideo related={detailId} />
           </section>
         </main>
       )}

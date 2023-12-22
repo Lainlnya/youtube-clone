@@ -16,7 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "allowImportingTsExtensions": true
   },
   "include": ["src"]
 }

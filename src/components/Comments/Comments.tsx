@@ -1,23 +1,11 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styles from './Comments.module.css';
-import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
+import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
+import { YoutubeComment } from 'api/Youtube.tsx';
 
 type VideoProps = {
   commentsId: string;
-};
-
-type Comment = {
-  id: string;
-  snippet: {
-    topLevelComment: {
-      snippet: {
-        authorProfileImageUrl: string;
-        authorDisplayName: string;
-        textDisplay: string;
-      };
-    };
-  };
 };
 
 export default function Comments({ commentsId }: VideoProps) {
@@ -35,7 +23,7 @@ export default function Comments({ commentsId }: VideoProps) {
       <div className={styles.comments}>Comments</div>
       {comments && (
         <ul>
-          {comments.map((comment: Comment) => (
+          {comments.map((comment: YoutubeComment) => (
             <li key={comment.id} className={styles.comment}>
               <figure className={styles.channel}>
                 <img

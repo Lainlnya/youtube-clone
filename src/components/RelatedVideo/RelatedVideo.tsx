@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Video from '../../pages/Video/Video';
-import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
+import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
 
 type VideoProps = {
   channelName: string;

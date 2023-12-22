@@ -4,23 +4,12 @@ import styles from './Video.module.css';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 import { formatAgo } from '../../util/date';
+import { YoutubeVideo } from 'api/Youtube';
 
-export type Video = {
+export type VideoInfos = {
   isLoading: boolean;
   isError: boolean;
-  playlists: Array<{
-    id: string | { videoId?: string };
-    snippet: {
-      thumbnails: {
-        medium: {
-          url: string;
-        };
-      };
-      title: string;
-      channelTitle: string;
-      publishedAt: string;
-    };
-  }>;
+  playlists: YoutubeVideo[] | undefined;
   isRelated: boolean;
 };
 
@@ -29,11 +18,11 @@ export type ErrorType<T> = {
 };
 
 export default function Video(
-  { isLoading, isError, playlists, isRelated }: Video,
+  { isLoading, isError, playlists, isRelated }: VideoInfos,
   { error }: ErrorType<object>
 ) {
   if (isLoading) return <Loading />;
-  if (isError) return <Error />;
+  if (isError || playlists === undefined) return <Error />;
 
   return (
     <>

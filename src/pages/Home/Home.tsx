@@ -3,7 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 import Video from '../Video/Video';
 import { useParams } from 'react-router-dom';
 import styles from '../Home/Home.module.css';
-import { useYoutubeApi } from '../../Context/YoutubeApiContext.jsx';
+import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
+import { YoutubeVideo } from 'api/Youtube.tsx';
 
 export default function Home() {
   const { keyword } = useParams();
@@ -12,10 +13,10 @@ export default function Home() {
     isLoading,
     isError,
     data: playlists,
-  } = useQuery(
+  } = useQuery<YoutubeVideo[]>(
     ['video', keyword],
     () => {
-      return youtube.hotSearch(keyword);
+      return youtube.hotSearch(keyword!);
     },
     { staleTime: 1000 * 60 * 1 }
   );
