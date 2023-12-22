@@ -37,6 +37,7 @@ export function DarkModeProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// 다크모드 context 설정
 export const useDarkMode = () => useContext(DarkModeContext);
 
 function updateDarkMode(darkMode: boolean) {
