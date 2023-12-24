@@ -1,12 +1,17 @@
-import React from 'react';
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { useQuery } from '@tanstack/react-query';
-import styles from './Comments.module.css';
 import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
 import { YoutubeComment } from 'api/Youtube.tsx';
 
 type VideoProps = {
   commentsId: string;
 };
+
+const commentStyle = css`
+  margin-bottom: 10px;
+  font-size: 1rem;
+`;
 
 export default function Comments({ commentsId }: VideoProps) {
   const { youtube } = useYoutubeApi();
@@ -20,25 +25,53 @@ export default function Comments({ commentsId }: VideoProps) {
 
   return (
     <>
-      <div className={styles.comments}>Comments</div>
+      <div
+        css={{
+          fontSize: '1.2rem',
+          fontWeight: 600,
+          margin: '20px 0',
+        }}
+      >
+        Comments
+      </div>
       {comments && (
         <ul>
           {comments.map((comment: YoutubeComment) => (
-            <li key={comment.id} className={styles.comment}>
-              <figure className={styles.channel}>
+            <li key={comment.id} css={commentStyle}>
+              <figure
+                css={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  width: '100%',
+                }}
+              >
                 <img
-                  className={styles.channelThumbnail}
+                  css={{
+                    width: '44px',
+                    height: '44px',
+                    borderRadius: '50%',
+                  }}
                   src={
                     comment.snippet.topLevelComment.snippet
                       .authorProfileImageUrl
                   }
                   alt="channel thumbnail"
                 />
-                <figcaption className={styles.channelCaption}>
-                  <p className={styles.title}>
+                <figcaption
+                  css={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                  }}
+                >
+                  <p
+                    css={{
+                      fontWeight: 600,
+                      fontSize: '1rem',
+                    }}
+                  >
                     {comment.snippet.topLevelComment.snippet.authorDisplayName}
                   </p>
-                  <p className={styles.comment}>
+                  <p css={commentStyle}>
                     {comment.snippet.topLevelComment.snippet.textDisplay}
                   </p>
                 </figcaption>

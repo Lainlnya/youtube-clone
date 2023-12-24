@@ -1,10 +1,67 @@
+/** @jsxImportSource @emotion/react */
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Video.module.css';
 import Loading from '../Loading/Loading';
 import Error from '../Error/Error';
 import { formatAgo } from '../../util/date';
 import { YoutubeVideo } from 'api/Youtube';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
+const listStyle = css({
+  backgroundColor: 'var(--color-bg)',
+  color: 'var(--color-text)',
+  padding: '24px 24px 0 24px',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  alignItems: 'stretch',
+});
+
+const listItemStyle = css({
+  flexBasis: '320px',
+  flexGrow: 1,
+  maxWidth: '360px',
+  minWidth: '320px',
+  listStyleType: 'none',
+  marginBottom: '24px',
+  '&:hover': { cursor: 'pointer' },
+});
+
+const figureStyle = styled('figure')`
+  width: 320px;
+`;
+
+const figureInnerStyle = styled(figureStyle)`
+  width: 360px;
+  height: 90px;
+  display: flex;
+  flex-flow: row nowrap;
+`;
+
+const imgStyle = styled('img')`
+  width: 100%;
+  height: 180px;
+  text-align: center;
+  border-radius: 1rem;
+`;
+
+const relatedStyle = css({
+  width: '50%',
+  height: '100%',
+});
+
+const figcaptionStyle = styled('figcaption')`
+  margin-left: 2%;
+  font-size: 0.7rem;
+  width: 90%;
+`;
+
+const titleStyle = css({
+  fontSize: '0.8rem',
+  fontWeight: 600,
+});
 
 export type VideoInfos = {
   isLoading: boolean;
@@ -27,7 +84,7 @@ export default function Video(
   return (
     <>
       {playlists && (
-        <ul className={styles.list}>
+        <ul css={listStyle}>
           {playlists.map((playlist) => (
             <Link
               to={
@@ -39,22 +96,24 @@ export default function Video(
             >
               <li
                 key={typeof playlist.id === 'string' ? playlist.id : ''}
-                className={styles.list_item}
+                css={listItemStyle}
               >
-                <figure className={`${isRelated ? styles.figure : ''}`}>
+                <figure
+                  css={`
+                    ${isRelated ? figureInnerStyle : ''}
+                  `}
+                >
                   <img
-                    className={`${isRelated ? styles.related : ''}`}
+                    css={`
+                      ${isRelated ? relatedStyle : ''}
+                    `}
                     src={playlist.snippet.thumbnails.medium.url}
                     alt="thumbnail"
                   />
-                  <figcaption
-                    className={`${isRelated ? styles.relatedFig : ''}`}
-                  >
-                    <p className={styles.title}>{playlist.snippet.title}</p>
-                    <p className={styles.channel}>
-                      {playlist.snippet.channelTitle}
-                    </p>
-                    <p className={styles.day}>
+                  <figcaption css={figcaptionStyle}>
+                    <p css={titleStyle}>{playlist.snippet.title}</p>
+                    <p style>{playlist.snippet.channelTitle}</p>
+                    <p css={styles.day}>
                       {formatAgo(playlist.snippet.publishedAt)}
                     </p>
                   </figcaption>

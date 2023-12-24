@@ -17,7 +17,8 @@
     "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": "src",
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "types": ["@emotion/react/types/css-prop"]
   },
   "include": ["src"]
 }
