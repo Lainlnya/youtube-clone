@@ -14038,6 +14038,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "youtube-clone@workspace:."
   dependencies:
+    "@emotion/babel-plugin": "npm:^11.11.0"
     "@emotion/css": "npm:^11.11.2"
     "@emotion/react": "npm:^11.11.1"
     "@emotion/styled": "npm:^11.11.0"

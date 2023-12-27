@@ -7,7 +7,6 @@ import Error from '../Error/Error';
 import { formatAgo } from '../../util/date';
 import { YoutubeVideo } from 'api/Youtube';
 import { css } from '@emotion/react';
-import styled from '@emotion/styled';
 
 const listStyle = css({
   backgroundColor: 'var(--color-bg)',
@@ -29,34 +28,34 @@ const listItemStyle = css({
   '&:hover': { cursor: 'pointer' },
 });
 
-const figureStyle = styled('figure')`
-  width: 320px;
-`;
+const figureStyle = css({
+  width: '320px',
+});
 
-const figureInnerStyle = styled(figureStyle)`
-  width: 360px;
-  height: 90px;
-  display: flex;
-  flex-flow: row nowrap;
-`;
+const figureInnerStyle = css({
+  width: '360px',
+  height: '90px',
+  display: 'flex',
+  flexFlow: 'row nowrap',
+});
 
-const imgStyle = styled('img')`
-  width: 100%;
-  height: 180px;
-  text-align: center;
-  border-radius: 1rem;
-`;
+const imgStyle = css({
+  width: '100%',
+  height: '180px',
+  textAlign: 'center',
+  borderRadius: '1rem',
+});
 
 const relatedStyle = css({
   width: '50%',
   height: '100%',
 });
 
-const figcaptionStyle = styled('figcaption')`
-  margin-left: 2%;
-  font-size: 0.7rem;
-  width: 90%;
-`;
+const figcaptionStyle = css({
+  marginLeft: '2%',
+  fontSize: '0.8rem',
+  width: '90%',
+});
 
 const titleStyle = css({
   fontSize: '0.8rem',
@@ -99,23 +98,19 @@ export default function Video(
                 css={listItemStyle}
               >
                 <figure
-                  css={`
-                    ${isRelated ? figureInnerStyle : ''}
-                  `}
+                  css={
+                    isRelated ? [figureStyle, figureInnerStyle] : figureStyle
+                  }
                 >
                   <img
-                    css={`
-                      ${isRelated ? relatedStyle : ''}
-                    `}
+                    css={isRelated ? [imgStyle, relatedStyle] : imgStyle}
                     src={playlist.snippet.thumbnails.medium.url}
                     alt="thumbnail"
                   />
                   <figcaption css={figcaptionStyle}>
                     <p css={titleStyle}>{playlist.snippet.title}</p>
-                    <p style>{playlist.snippet.channelTitle}</p>
-                    <p css={styles.day}>
-                      {formatAgo(playlist.snippet.publishedAt)}
-                    </p>
+                    <p>{playlist.snippet.channelTitle}</p>
+                    <p>{formatAgo(playlist.snippet.publishedAt)}</p>
                   </figcaption>
                 </figure>
               </li>

@@ -18,7 +18,7 @@
     "incremental": true,
     "baseUrl": "src",
     "allowImportingTsExtensions": true,
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react/types/css-prop", "node"]
   },
   "include": ["src"]
 }

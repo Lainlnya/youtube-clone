@@ -1,13 +1,14 @@
-import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './components/Root/Root';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Home from './pages/Home/Home';
 import Error from './pages/Error/Error';
 import VideoDetail from './pages/VideoDetail/VideoDetail';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { DarkModeProvider } from './Context/DarkModeContext';
 import { YoutubeApiProvider } from './Context/YoutubeApiContext';
+import { Global } from '@emotion/react';
+import globalStyes from './global.tsx';
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ function App() {
     <YoutubeApiProvider>
       <DarkModeProvider>
         <QueryClientProvider client={queryClient}>
+          <Global styles={globalStyes} />
           <RouterProvider router={router} />
           <ReactQueryDevtools initialIsOpen={true} />
         </QueryClientProvider>

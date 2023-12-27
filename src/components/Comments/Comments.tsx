@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query';
 import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
 import { YoutubeComment } from 'api/Youtube.tsx';
 
-type VideoProps = {
-  commentsId: string;
-};
-
 const commentStyle = css`
   margin-bottom: 10px;
   font-size: 1rem;
 `;
+
+type VideoProps = {
+  commentsId: string;
+};
 
 export default function Comments({ commentsId }: VideoProps) {
   const { youtube } = useYoutubeApi();
@@ -61,6 +61,7 @@ export default function Comments({ commentsId }: VideoProps) {
                   css={{
                     display: 'flex',
                     flexDirection: 'column',
+                    marginLeft: '1rem',
                   }}
                 >
                   <p

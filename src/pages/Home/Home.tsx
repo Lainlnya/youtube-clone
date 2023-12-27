@@ -1,10 +1,15 @@
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Video from '../Video/Video';
 import { useParams } from 'react-router-dom';
-import styles from '../Home/Home.module.css';
 import { useYoutubeApi } from '../../Context/YoutubeApiContext.tsx';
 import { YoutubeVideo } from 'api/Youtube.tsx';
+import { css } from '@emotion/react';
+
+const mainStyle = css({
+  backgroundColor: `var(--color-bg)`,
+});
 
 export default function Home() {
   const { keyword } = useParams();
@@ -22,7 +27,7 @@ export default function Home() {
   );
 
   return (
-    <main className={styles.main}>
+    <main css={mainStyle}>
       <Video
         isLoading={isLoading}
         isError={isError}
